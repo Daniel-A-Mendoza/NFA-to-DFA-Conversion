@@ -16,6 +16,9 @@ public class State {
     public boolean isInitial() {
         return isInitial;
     }
+    public void setName(String name){
+        this.name = name;
+    }
     public void setFinal(boolean isFinal) {
         this.isFinal = isFinal;
     }

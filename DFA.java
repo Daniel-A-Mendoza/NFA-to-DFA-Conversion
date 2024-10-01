@@ -1,3 +1,3 @@
-public class DFA {
+public class DFA <E>{
     
 }
