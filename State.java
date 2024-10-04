@@ -2,7 +2,6 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Arrays;
 public class State {
     // States contain the following characteristics: name, isFinal, isInitial
     private String name;
@@ -109,8 +108,7 @@ public class State {
            arrayListTemp.toArray(temp);
         }
     }
-
-
+    
     // Overriding the toString method and returning characteristics about the State
     public String toString() {
         String result = "State: " + name + "\n" + "Is Initial: " + isInitial + "\n" + "Is Final: " + isFinal + "\n" + "Transition Function: ";
@@ -119,22 +117,26 @@ public class State {
         }
         else{
             for (Map.Entry<Character, State[]> entry : transitionFunction.entrySet()){
-                result += "δ(" ;
-                result += entry.getKey().toString() + ", {";
+                result += "\nδ(" + name + ", ";
+                result += entry.getKey().toString() + ") = {";
                 State firstState = entry.getValue()[0];
+                State lastState = entry.getValue()[entry.getValue().length - 1];
                
                 for (State state : entry.getValue()) {
                     if (!state.equals(firstState)){
                         result += ",";
                     }
-                        result += state.getName();
+                    result += state.getName();
+                    if (state.equals(lastState)){
+                        result += "}"; 
                     }
-                    
                 }
-                result += "})\n";
+                result += "\n";
             }
-            return result;
+            
         }
+        return result;
+    }
 
     // Overriding the equals method to compare two states
     public boolean equals(State operand) {
