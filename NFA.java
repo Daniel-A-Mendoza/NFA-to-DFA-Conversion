@@ -190,9 +190,10 @@ public class NFA{
             if (i != finalStates.size() - 1){
                 result += ", ";
             }
+            
+        }
         result += "}\n";
         result += "Transition Functions:";
-        }
         for (int i = 0; i < Q.size(); i++){
             result += Q.get(i).transitionFunctionsToString();
         }
