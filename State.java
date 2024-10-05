@@ -108,6 +108,33 @@ public class State {
            arrayListTemp.toArray(temp);
         }
     }
+
+    public String transitionFunctionsToString(){
+        String result = "";
+        if (transitionFunction.isEmpty()){
+            result += "Empty";
+        }
+        else{
+            for (Map.Entry<Character, State[]> entry : transitionFunction.entrySet()){
+                result += "\nδ(" + name + ", ";
+                result += entry.getKey().toString() + ") = {";
+                State firstState = entry.getValue()[0];
+                State lastState = entry.getValue()[entry.getValue().length - 1];
+               
+                for (State state : entry.getValue()) {
+                    if (!state.equals(firstState)){
+                        result += ",";
+                    }
+                    result += state.getName();
+                    if (state.equals(lastState)){
+                        result += "}"; 
+                    }
+                }
+            }
+            
+        }
+        return result;
+    }
     
     // Overriding the toString method and returning characteristics about the State
     public String toString() {
@@ -131,7 +158,6 @@ public class State {
                         result += "}"; 
                     }
                 }
-                result += "\n";
             }
             
         }
