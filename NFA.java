@@ -35,6 +35,7 @@ public class NFA{
    public NFA (){
      Q = new ArrayList<State>();
      alphabet = new ArrayList<Character>();
+     alphabet.add('λ');
      initialState = new State();
      finalStates = new ArrayList<State>();
    }
@@ -43,6 +44,7 @@ public class NFA{
    public NFA(ArrayList<State> Q, ArrayList<Character> alphabet){
         this.Q = Q;
         this.alphabet = alphabet;
+        alphabet.add('λ');
         this.initialState = findInitialState();
         this.finalStates = findFinalStates();
    }
@@ -148,12 +150,11 @@ public class NFA{
             result.add(state);
             // If the state has a transition using the empty string, we will add the next state to the result
             if (state.getTransitionFunction().containsKey('λ')){
-                State[] temp = state.getTransitionFunction().get('λ');
-                for (int i = 0; i < temp.length; i++){
-                    result.add(temp[i]);
-                    result.addAll(epsilonClosure(temp[i]));
+                for(State s : state.getTransitionFunction().get('λ')){
+                    result.addAll(epsilonClosure(s));
                 }
             }
+            System.out.println("Epsilon Closure of " + state.getName() + ": " + result);
             return result;
         }
 
@@ -199,5 +200,4 @@ public class NFA{
         }
         return result;
      }
-
 }

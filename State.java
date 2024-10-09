@@ -1,13 +1,14 @@
-// Let's great a Hashmap to store the symbol (key) and the list of states (value) that the current state can go to using the symbol
+// Let's create a Hashmap to store the symbol (key) and the list of states (value) that the current state can go to using the symbol
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 public class State {
-    // States contain the following characteristics: name, isFinal, isInitial
+    // States contain the following characteristics: name, isFinal, isInitial, transitionFunction
     private String name;
     private boolean isFinal;
     private boolean isInitial;
     HashMap <Character, State[]> transitionFunction;
+
     // Empty State or Default Constructor
     public State() {
         name = "";
@@ -32,7 +33,7 @@ public class State {
             this.transitionFunction = new HashMap<>();
         }
         else{
-        this.transitionFunction = transitionFunction;
+            this.transitionFunction = transitionFunction;
         }
     }
 
@@ -49,6 +50,7 @@ public class State {
     public HashMap<Character, State[]> getTransitionFunction(){
         return transitionFunction;
     }
+
     // Setters
     public void setName(String name){
         this.name = name;
@@ -62,7 +64,7 @@ public class State {
     public void setTransitionFunction(HashMap<Character, State[]> transitionFunction){
         this.transitionFunction = transitionFunction;
     }
-
+    
     // Add a Transition
     public void addTransition(Character symbol, State[] states){
         // If the symbol is not in the transition function, we will add it
